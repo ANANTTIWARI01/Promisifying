@@ -15,12 +15,16 @@
 
     <script>
       const allNumbers = [];
-
+let flag=true
       function returnARandomNumber() {
         let number = Math.floor(Math.random()*10)
-        if(allNumbers.includes(number)) return false
+        if(allNumbers.includes(number)) {
+          flag= false
+          return number
+        }
         else{
           allNumbers.push(number)
+          flag =true
           return number
         }
       }
@@ -36,7 +40,8 @@
 
       const printOutput = () => {
         return new Promise((resolve,reject)=>{
-          resolve(returnARandomNumber())
+          if(flag)  resolve(returnARandomNumber())
+          else reject(returnARandomNumber())
         })
       };
 
